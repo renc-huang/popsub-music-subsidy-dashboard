@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>採購案探索 | 流行音樂補助及採購調查</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.a0083439.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_import/components/theme.853ed63d.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.31cd1366.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Noto+Serif+TC:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      /* ── pop/sub Lab Design Tokens ── */
+      :root {
+        --ps-color-budget:     #2563eb;
+        --ps-color-settlement: #dc2626;
+        --ps-color-analysis:   #6366f1;
+        --ps-color-accent:     #059669;
+        --ps-text-muted:       var(--theme-foreground-muted, #666);
+        --ps-font-sans:  "Noto Sans TC", var(--sans-serif);
+        --ps-font-serif: "Noto Serif TC", var(--serif);
+      }
+
+      /* ── Dark mode override (手動切換用) ── */
+      [data-theme="dark"] {
+        --theme-foreground: #dfdfd6;
+        --theme-foreground-focus: oklch(0.712564 0.257662 265.758);
+        --theme-background-b: #161616;
+        --theme-background-a: color-mix(in srgb, var(--theme-foreground) 4%, var(--theme-background-b));
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-b);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-b));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-b));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-b));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-b));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-b));
+        --ps-color-budget:     #60a5fa;
+        --ps-color-settlement: #f87171;
+        --ps-color-analysis:   #a5b4fc;
+        --ps-color-accent:     #34d399;
+        color-scheme: dark;
+        background: var(--theme-background);
+        color: var(--theme-foreground);
+      }
+      [data-theme="light"] {
+        --theme-foreground: #1b1e23;
+        --theme-foreground-focus: #3b5fc0;
+        --theme-background-a: #ffffff;
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-a);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-a));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-a));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-a));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-a));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-a));
+        --ps-color-budget:     #2563eb;
+        --ps-color-settlement: #dc2626;
+        --ps-color-analysis:   #6366f1;
+        --ps-color-accent:     #059669;
+        color-scheme: light;
+        background: var(--theme-background);
+        color: var(--theme-foreground);
+      }
+
+      /* ── 字體 ── */
+      body, #observablehq-main { font-family: var(--ps-font-sans); font-weight: 400; }
+      h1 { font-family: var(--ps-font-serif); font-weight: 700; }
+      h2 { font-family: var(--ps-font-serif); font-weight: 600; }
+      h3, h4, h5, h6 { font-family: var(--ps-font-sans); font-weight: 600; }
+      .big { font-family: var(--ps-font-sans); font-size: 2rem; font-weight: 700; display: block; }
+      .muted { color: var(--ps-text-muted); font-size: 0.85rem; }
+      #observablehq-sidebar { font-family: var(--ps-font-sans); font-weight: 500; }
+      #observablehq-footer { font-family: var(--ps-font-sans); font-weight: 300; font-size: 0.8rem; }
+      table, label, select, input[type="text"] { font-family: var(--ps-font-sans); }
+
+      /* ── Header ── */
+      .ps-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.25rem 0; }
+      .ps-theme-toggle { cursor: pointer; background: none; border: 1px solid var(--theme-foreground-faint, #ccc); border-radius: 4px; padding: 0.2rem 0.5rem; font-size: 0.8rem; color: var(--theme-foreground, #333); font-family: var(--ps-font-sans); }
+      .ps-theme-toggle:hover { border-color: var(--theme-foreground-muted, #999); }
+
+      /* ── Sidebar toggle：收合時放大、加背景色使其明顯可見 ── */
+      label[for="observablehq-sidebar-toggle"] {
+        z-index: 100;
+        width: 2.25rem;
+        height: 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: var(--theme-background-alt, #f5f5f5);
+        border: 1px solid var(--theme-foreground-faintest, #ddd);
+        transition: background 0.15s, border-color 0.15s;
+      }
+      label[for="observablehq-sidebar-toggle"]:hover {
+        background: var(--theme-foreground-faintest, #eee);
+        border-color: var(--theme-foreground-fainter, #bbb);
+      }
+
+      /* ── 頁面底部 prev/next 導航：撐滿寬度，prev 靠左 next 靠右 ── */
+      #observablehq-footer nav {
+        max-width: 100%;
+      }
+
+      /* ── Footer 置中 ── */
+      #observablehq-footer {
+        text-align: center;
+      }
+    </style>
+    <script>
+      // 初始化主題：讀取 localStorage 或跟隨系統
+      (function() {
+        const saved = localStorage.getItem('ps-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      })();
+    </script>
+  
+<script type="module">
+
+import {define} from "./_observablehq/client.a0083439.js";
+import {registerFile} from "./_observablehq/stdlib.277aeab8.js";
+
+registerFile("./data/procurement_clean.csv", {"name":"./data/procurement_clean.csv","mimeType":"text/csv","path":"./_file/data/procurement_clean.eeeee1a5.csv","lastModified":1774630194150,"size":61610});
+
+define({id: "06f252e6", inputs: ["dark","FileAttachment"], outputs: ["psColors","c","rawData","data"], body: async (dark,FileAttachment) => {
+const {psColors} = await import("./_import/components/theme.853ed63d.js");
+const c = psColors(dark);
+const rawData = await FileAttachment("./data/procurement_clean.csv").csv({typed: true});
+const data = rawData.map(d => ({
+  ...d,
+  total_award_amount: +String(d.total_award_amount || 0).replace(/,/g, ""),
+  budget_amount: +String(d.budget_amount || 0).replace(/,/g, ""),
+  fiscal_year: +d.fiscal_year || null,
+}));
+return {psColors,c,rawData,data};
+}});
+
+define({id: "934d50eb", inputs: ["data"], outputs: ["years","types"], body: (data) => {
+const years = [...new Set(data.map(d => d.fiscal_year))].filter(Boolean).sort((a, b) => b - a);
+const types = [...new Set(data.map(d => d.type))].filter(Boolean).sort();
+return {years,types};
+}});
+
+define({id: "e01e9222", inputs: ["view","Inputs","years","types"], outputs: ["selectedYear","selectedType","searchText"], body: (view,Inputs,years,types) => {
+const selectedYear = view(Inputs.select([null, ...years], {label: "年度", format: d => d ? `${d} 年` : "全部年度", value: null}));
+const selectedType = view(Inputs.select([null, ...types], {label: "公告類型", format: d => d || "全部類型", value: null}));
+const searchText = view(Inputs.text({label: "搜尋（標案名稱/得標廠商）", placeholder: "輸入關鍵字…", width: 300}));
+return {selectedYear,selectedType,searchText};
+}});
+
+define({id: "4b9a79e8", inputs: ["data","selectedYear","selectedType","searchText"], outputs: ["filtered"], body: (data,selectedYear,selectedType,searchText) => {
+const filtered = data.filter(d => {
+  if (selectedYear && d.fiscal_year !== selectedYear) return false;
+  if (selectedType && d.type !== selectedType) return false;
+  if (searchText) {
+    const q = searchText.toLowerCase();
+    const title = (d.title || "").toLowerCase();
+    const winner = (d.winner_names || "").toLowerCase();
+    if (!title.includes(q) && !winner.includes(q)) return false;
+  }
+  return true;
+});
+return {filtered};
+}});
+
+define({id: "4bb8456a", mode: "inline", inputs: ["filtered","display"], body: async (filtered,display) => {
+display(await(
+filtered.length.toLocaleString()
+))
+}});
+
+define({id: "bf2656b9", mode: "inline", inputs: ["d3","filtered","display"], body: async (d3,filtered,display) => {
+display(await(
+(d3.sum(filtered, d => d.total_award_amount || 0) / 1e8).toFixed(2)
+))
+}});
+
+define({id: "f890054e", mode: "inline", inputs: ["filtered","display"], body: async (filtered,display) => {
+display(await(
+new Set(filtered.flatMap(d => (d.winner_names || "").split(",").filter(Boolean))).size.toLocaleString()
+))
+}});
+
+define({id: "fcbd5c9c", inputs: ["d3","filtered"], outputs: ["byYear"], body: (d3,filtered) => {
+const byYear = d3.rollups(
+  filtered.filter(d => d.total_award_amount > 0),
+  v => d3.sum(v, d => d.total_award_amount),
+  d => d.fiscal_year
+).map(([year, total]) => ({year, total})).sort((a, b) => a.year - b.year);
+return {byYear};
+}});
+
+define({id: "4a01868d", inputs: ["Plot","width","byYear","c","display"], body: async (Plot,width,byYear,c,display) => {
+display(await(
+Plot.plot({
+  width,
+  height: 350,
+  x: {label: "年度", tickFormat: d => `${d}`},
+  y: {label: "決標總額（億元）", grid: true, transform: d => d / 1e8, tickFormat: d => d.toFixed(1)},
+  marks: [
+    Plot.barY(byYear, {x: "year", y: "total", fill: c.settlement, tip: true}),
+    Plot.ruleY([0]),
+  ]
+})
+))
+}});
+
+define({id: "8d94b388", inputs: ["filtered","d3"], outputs: ["cleanDisplayName","winners","topWinners"], body: (filtered,d3) => {
+// 截取廠商顯示名稱：去除括號內英文（僅用於圖表顯示，不修改原始資料）
+const cleanDisplayName = name => name.replace(/\s*[\(（][A-Za-z][^)\）]*[\)）]\s*$/, "").trim();
+
+const winners = filtered.flatMap(d => {
+  const names = (d.winner_names || "").split(",").filter(Boolean);
+  return names.map(name => ({
+    rawName: name.trim(),
+    name: cleanDisplayName(name.trim()),
+    amount: d.total_award_amount || 0
+  }));
+});
+const topWinners = d3.rollups(winners, v => d3.sum(v, d => d.amount), d => d.name)
+  .map(([name, total]) => ({name, total}))
+  .sort((a, b) => b.total - a.total)
+  .slice(0, 20);
+return {cleanDisplayName,winners,topWinners};
+}});
+
+define({id: "1e3edffe", inputs: ["Plot","width","topWinners","c","display"], body: async (Plot,width,topWinners,c,display) => {
+display(await(
+Plot.plot({
+  width,
+  height: 500,
+  marginLeft: 280,
+  x: {label: "得標總額（元）", grid: true},
+  y: {label: null, domain: topWinners.map(d => d.name)},
+  marks: [
+    Plot.barX(topWinners, {x: "total", y: "name", fill: c.settlement, tip: true, sort: {y: "-x"}}),
+    Plot.ruleX([0]),
+  ]
+})
+))
+}});
+
+define({id: "c618b5ff", inputs: ["Inputs","filtered","display"], body: async (Inputs,filtered,display) => {
+display(await(
+Inputs.table(filtered, {
+  columns: ["fiscal_year", "title", "winner_names", "total_award_amount", "budget_amount", "type", "date_formatted"],
+  header: {
+    fiscal_year: "年度",
+    title: "標案名稱",
+    winner_names: "得標廠商",
+    total_award_amount: "決標金額",
+    budget_amount: "預算金額",
+    type: "公告類型",
+    date_formatted: "日期",
+  },
+  sort: "total_award_amount",
+  reverse: true,
+  rows: 20,
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">流行音樂補助及採購調查</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./methodology">方法論</a></li>
+    <li class="observablehq-link"><a href="./subsidy">補助案</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./procurement">採購案</a></li>
+    <li class="observablehq-link"><a href="./budget">預決算</a></li>
+    <li class="observablehq-link"><a href="./download">資料下載</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<header id="observablehq-header">
+<div class="ps-header">
+    <a href="https://popsublab.meme" target="_blank" title="返回 pop/sub Lab 首頁" style="color:var(--theme-foreground);text-decoration:none;font-size:0.85rem;opacity:0.7;" rel="noopener noreferrer">↩ pop/sub Lab 首頁</a>
+    <button class="ps-theme-toggle" onclick="
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('ps-theme', next);
+    ">🌓 切換主題</button>
+  </div>
+</header>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#-1">年度決標金額</a></li>
+<li class="observablehq-secondary-link"><a href="#20">得標金額前 20 名廠商</a></li>
+<li class="observablehq-secondary-link"><a href="#-2">明細表</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="" tabindex="-1"><a class="observablehq-header-anchor" href="#">採購案探索</a></h1>
+<p>文化部影視及流行音樂產業局流行音樂產業組（job_number D 前綴）歷年採購標案。每個標案僅保留一筆記錄（決標優先）。</p>
+<div class="observablehq observablehq--block"><!--:06f252e6:--></div>
+<div class="observablehq observablehq--block"><!--:934d50eb:--></div>
+<div class="observablehq observablehq--block"><!--:e01e9222:--></div>
+<div class="observablehq observablehq--block"><!--:4b9a79e8:--></div>
+<div class="grid grid-cols-3" style="grid-auto-rows: auto;">
+  <div class="card">
+    <h2>篩選結果</h2>
+    <span class="big"><observablehq-loading></observablehq-loading><!--:4bb8456a:--></span> 筆標案
+  </div>
+  <div class="card">
+    <h2>決標總額</h2>
+    <span class="big"><observablehq-loading></observablehq-loading><!--:bf2656b9:--></span> 億元
+  </div>
+  <div class="card">
+    <h2>得標廠商數</h2>
+    <span class="big"><observablehq-loading></observablehq-loading><!--:f890054e:--></span> 家
+  </div>
+</div>
+<h2 id="-1" tabindex="-1"><a class="observablehq-header-anchor" href="#-1">年度決標金額</a></h2>
+<div class="observablehq observablehq--block"><!--:fcbd5c9c:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:4a01868d:--></div>
+<h2 id="20" tabindex="-1"><a class="observablehq-header-anchor" href="#20">得標金額前 20 名廠商</a></h2>
+<div class="observablehq observablehq--block"><!--:8d94b388:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1e3edffe:--></div>
+<h2 id="-2" tabindex="-1"><a class="observablehq-header-anchor" href="#-2">明細表</a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c618b5ff:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./subsidy"><span>補助案</span></a><a rel="next" href="./budget"><span>預決算</span></a></nav>
+<div>© 2026 pop/sub Lab</div>
+</footer>
+</div>
+</body>
+</html>

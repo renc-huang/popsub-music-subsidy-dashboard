@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>方法論 | 流行音樂補助及採購調查</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="modulepreload" href="./_observablehq/client.a0083439.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Noto+Serif+TC:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      /* ── pop/sub Lab Design Tokens ── */
+      :root {
+        --ps-color-budget:     #2563eb;
+        --ps-color-settlement: #dc2626;
+        --ps-color-analysis:   #6366f1;
+        --ps-color-accent:     #059669;
+        --ps-text-muted:       var(--theme-foreground-muted, #666);
+        --ps-font-sans:  "Noto Sans TC", var(--sans-serif);
+        --ps-font-serif: "Noto Serif TC", var(--serif);
+      }
+
+      /* ── Dark mode override (手動切換用) ── */
+      [data-theme="dark"] {
+        --theme-foreground: #dfdfd6;
+        --theme-foreground-focus: oklch(0.712564 0.257662 265.758);
+        --theme-background-b: #161616;
+        --theme-background-a: color-mix(in srgb, var(--theme-foreground) 4%, var(--theme-background-b));
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-b);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-b));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-b));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-b));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-b));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-b));
+        --ps-color-budget:     #60a5fa;
+        --ps-color-settlement: #f87171;
+        --ps-color-analysis:   #a5b4fc;
+        --ps-color-accent:     #34d399;
+        color-scheme: dark;
+        background: var(--theme-background);
+        color: var(--theme-foreground);
+      }
+      [data-theme="light"] {
+        --theme-foreground: #1b1e23;
+        --theme-foreground-focus: #3b5fc0;
+        --theme-background-a: #ffffff;
+        --theme-background: var(--theme-background-a);
+        --theme-background-alt: var(--theme-background-a);
+        --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-a));
+        --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-a));
+        --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-a));
+        --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-a));
+        --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-a));
+        --ps-color-budget:     #2563eb;
+        --ps-color-settlement: #dc2626;
+        --ps-color-analysis:   #6366f1;
+        --ps-color-accent:     #059669;
+        color-scheme: light;
+        background: var(--theme-background);
+        color: var(--theme-foreground);
+      }
+
+      /* ── 字體 ── */
+      body, #observablehq-main { font-family: var(--ps-font-sans); font-weight: 400; }
+      h1 { font-family: var(--ps-font-serif); font-weight: 700; }
+      h2 { font-family: var(--ps-font-serif); font-weight: 600; }
+      h3, h4, h5, h6 { font-family: var(--ps-font-sans); font-weight: 600; }
+      .big { font-family: var(--ps-font-sans); font-size: 2rem; font-weight: 700; display: block; }
+      .muted { color: var(--ps-text-muted); font-size: 0.85rem; }
+      #observablehq-sidebar { font-family: var(--ps-font-sans); font-weight: 500; }
+      #observablehq-footer { font-family: var(--ps-font-sans); font-weight: 300; font-size: 0.8rem; }
+      table, label, select, input[type="text"] { font-family: var(--ps-font-sans); }
+
+      /* ── Header ── */
+      .ps-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.25rem 0; }
+      .ps-theme-toggle { cursor: pointer; background: none; border: 1px solid var(--theme-foreground-faint, #ccc); border-radius: 4px; padding: 0.2rem 0.5rem; font-size: 0.8rem; color: var(--theme-foreground, #333); font-family: var(--ps-font-sans); }
+      .ps-theme-toggle:hover { border-color: var(--theme-foreground-muted, #999); }
+
+      /* ── Sidebar toggle：收合時放大、加背景色使其明顯可見 ── */
+      label[for="observablehq-sidebar-toggle"] {
+        z-index: 100;
+        width: 2.25rem;
+        height: 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: var(--theme-background-alt, #f5f5f5);
+        border: 1px solid var(--theme-foreground-faintest, #ddd);
+        transition: background 0.15s, border-color 0.15s;
+      }
+      label[for="observablehq-sidebar-toggle"]:hover {
+        background: var(--theme-foreground-faintest, #eee);
+        border-color: var(--theme-foreground-fainter, #bbb);
+      }
+
+      /* ── 頁面底部 prev/next 導航：撐滿寬度，prev 靠左 next 靠右 ── */
+      #observablehq-footer nav {
+        max-width: 100%;
+      }
+
+      /* ── Footer 置中 ── */
+      #observablehq-footer {
+        text-align: center;
+      }
+    </style>
+    <script>
+      // 初始化主題：讀取 localStorage 或跟隨系統
+      (function() {
+        const saved = localStorage.getItem('ps-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+      })();
+    </script>
+  
+<script type="module">
+
+import "./_observablehq/client.a0083439.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">流行音樂補助及採購調查</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./methodology">方法論</a></li>
+    <li class="observablehq-link"><a href="./subsidy">補助案</a></li>
+    <li class="observablehq-link"><a href="./procurement">採購案</a></li>
+    <li class="observablehq-link"><a href="./budget">預決算</a></li>
+    <li class="observablehq-link"><a href="./download">資料下載</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<header id="observablehq-header">
+<div class="ps-header">
+    <a href="https://popsublab.meme" target="_blank" title="返回 pop/sub Lab 首頁" style="color:var(--theme-foreground);text-decoration:none;font-size:0.85rem;opacity:0.7;" rel="noopener noreferrer">↩ pop/sub Lab 首頁</a>
+    <button class="ps-theme-toggle" onclick="
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('ps-theme', next);
+    ">🌓 切換主題</button>
+  </div>
+</header>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#-2">已知限制</a></li>
+<li class="observablehq-secondary-link"><a href="#-3">授權聲明</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="" tabindex="-1"><a class="observablehq-header-anchor" href="#">方法論</a></h1>
+<h2 id="-1" tabindex="-1"><a class="observablehq-header-anchor" href="#-1">資料來源</a></h2>
+<h3 id="p1" tabindex="-1"><a class="observablehq-header-anchor" href="#p1">補助軌（P1）</a></h3>
+<ul>
+<li><strong>來源</strong>：文化部獎補助資訊網（grants.moc.gov.tw）</li>
+<li><strong>範圍</strong>：流行音樂產業組（unitKeyWord=49）所有獎補助名單公告</li>
+<li><strong>涵蓋年度</strong>：107–114 年度</li>
+<li><strong>採集方式</strong>：Playwright 自動化爬取（兩層架構：清單頁 → 個案明細頁）</li>
+<li><strong>粒度</strong>：每筆 = 一個獲補助者的一個計畫案</li>
+</ul>
+<h3 id="p3" tabindex="-1"><a class="observablehq-header-anchor" href="#p3">採購軌（P3）</a></h3>
+<ul>
+<li><strong>來源</strong>：中華民國政府電子採購網，經 g0v pcc-api（pcc-api.openfun.app）間接取得</li>
+<li><strong>範圍</strong>：文化部影視及流行音樂產業局（unit_id=A.25.2），篩選 job_number 以 D 開頭者（流行音樂產業組）</li>
+<li><strong>涵蓋年度</strong>：101–115 年度</li>
+<li><strong>採集方式</strong>：Playwright 經由 API 取得（繞過 Cloudflare 防護），含三層查詢（清單 → 標案明細 → 得標廠商）</li>
+<li><strong>去重規則</strong>：以 job_number 為唯一鍵，每標案僅保留一筆（決標公告優先，無決標則保留最新）</li>
+<li><strong>粒度</strong>：每筆 = 一個 unique 標案</li>
+</ul>
+<h3 id="p2" tabindex="-1"><a class="observablehq-header-anchor" href="#p2">預決算（P2）</a></h3>
+<ul>
+<li><strong>來源</strong>：文化部影視及流行音樂產業局官網（bamid.gov.tw）行政公開資訊</li>
+<li><strong>涵蓋年度</strong>：102–114 年度</li>
+<li><strong>採集方式</strong>：pdfplumber 解析法定預算與決算審定本 PDF；110 年度使用 XML 結構化資料</li>
+<li><strong>目標項目</strong>：「流行音樂產業輔導」（預算科目編號 5361201200）</li>
+</ul>
+<h2 id="-2" tabindex="-1"><a class="observablehq-header-anchor" href="#-2">已知限制</a></h2>
+<ol>
+<li><strong>「流行音樂」定義不統一</strong>：補助平台以申請單位的主業認定，採購網以標案品項關鍵字搜尋，兩者母群體定義不同</li>
+<li><strong>採購軌以 D 前綴篩選</strong>：此為流行音樂產業組的標案編號慣例，但無法排除部分跨組案件可能使用其他前綴</li>
+<li><strong>廠商名稱未標準化</strong>：同一實體可能以不同名稱出現於兩軌資料中，目前尚未建立統一對照表</li>
+<li><strong>年度口徑差異</strong>：補助年度以核定年度計算，採購以決標年度計算，兩者未必對應同一曆年的實際支出</li>
+<li><strong>預決算解析品質</strong>：部分早期 PDF 為掃描件或特殊字型編碼，已以人工方式補錄</li>
+</ol>
+<h2 id="-3" tabindex="-1"><a class="observablehq-header-anchor" href="#-3">授權聲明</a></h2>
+<p>依行政院公共工程委員會著作權聲明，為教學、研究或其他正當目的，在合理範圍內得引用，引用時須註明出處。本資料集由中正大學傳播學系 pop/sub 研究室整理，用途為學術研究，不得作為商業利用。</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>流行音樂補助及採購調查</span></a><a rel="next" href="./subsidy"><span>補助案</span></a></nav>
+<div>© 2026 pop/sub Lab</div>
+</footer>
+</div>
+</body>
+</html>
