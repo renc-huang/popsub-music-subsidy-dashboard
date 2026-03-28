@@ -1,0 +1,99 @@
+/* ================================================================
+   pop/sub Lab — Design Token System
+   ================================================================
+   設計師未來只需修改此檔的 CSS 變數即可更換全站色彩與字體。
+   所有頁面的圖表、文字、元件均引用這些 Token。
+   ================================================================ */
+
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap");
+
+/* ── 色彩 Token（Light Mode）── */
+:root {
+  /* 資料視覺化 — 語義色彩 */
+  --ps-color-budget:      #2563eb;  /* 預算/補助 — 藍 */
+  --ps-color-settlement:  #dc2626;  /* 決算/採購 — 紅 */
+  --ps-color-analysis:    #6366f1;  /* 分析/分佈 — 靛 */
+  --ps-color-accent:      #059669;  /* 強調/輔助 — 綠 */
+
+  /* 文字 */
+  --ps-text-muted: var(--theme-foreground-muted, #666);
+
+  /* 字體堆疊 */
+  --ps-font-sans:  "Noto Sans TC", var(--sans-serif);
+  --ps-font-serif: "Noto Serif TC", var(--serif);
+}
+
+/* ── 色彩 Token（Dark Mode）── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ps-color-budget:     #60a5fa;
+    --ps-color-settlement: #f87171;
+    --ps-color-analysis:   #a5b4fc;
+    --ps-color-accent:     #34d399;
+    --ps-text-muted:       var(--theme-foreground-muted, #999);
+  }
+}
+
+/* ── 全域字體 ── */
+body,
+#observablehq-main {
+  font-family: var(--ps-font-sans);
+  font-weight: 400;
+}
+
+/* ── 標題：襯線體 ── */
+h1 {
+  font-family: var(--ps-font-serif);
+  font-weight: 700;
+}
+
+h2 {
+  font-family: var(--ps-font-serif);
+  font-weight: 600;
+}
+
+/* ── h3 以下：無襯線粗體 ── */
+h3, h4, h5, h6 {
+  font-family: var(--ps-font-sans);
+  font-weight: 600;
+}
+
+/* ── 數字卡片 ── */
+.big {
+  font-family: var(--ps-font-sans);
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
+.muted {
+  color: var(--ps-text-muted);
+  font-size: 0.85rem;
+}
+
+/* ── 側邊欄 & 頁尾 ── */
+#observablehq-sidebar {
+  font-family: var(--ps-font-sans);
+  font-weight: 500;
+}
+
+#observablehq-footer {
+  font-family: var(--ps-font-sans);
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+/* ── 表格 ── */
+table {
+  font-family: var(--ps-font-sans);
+  font-weight: 400;
+}
+
+/* ── 篩選器 label ── */
+label,
+select,
+input[type="text"] {
+  font-family: var(--ps-font-sans);
+  font-weight: 500;
+}
