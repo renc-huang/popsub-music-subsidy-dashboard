@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "observable preview",
     "build": "observable build",
-    "deploy": "observable deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@observablehq/framework": "^1.13.0"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "wrangler": "^4.78.0"
   }
 }
