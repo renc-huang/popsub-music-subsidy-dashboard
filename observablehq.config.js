@@ -111,6 +111,8 @@ export default {
         if (saved) document.documentElement.setAttribute('data-theme', saved);
       })();
     </script>
+    <!-- Tinybird Web Analytics -->
+    <script defer src="https://unpkg.com/@tinybirdco/flock.js" data-token="p.eyJ1IjogIjAyODZiMWQ5LTljZjctNGI5OC1iMzUyLTJiZmE0NmUyNmEyOSIsICJpZCI6ICI1NWI3ZDBlNS05ZGZlLTRiYmMtODk3ZS03NmZkMTIxNzdlZGMiLCAiaG9zdCI6ICJhcC1lYXN0LWF3cyJ9.By4RMMXPfH2TtwA7FohLgzEY0Ql6hXjNr_pubbc06iI" data-host="https://api.ap-east-1.aws.tinybird.co"></script>
   `,
   header: `<div class="ps-header">
     <a href="https://popsublab.meme" target="_blank" title="返回 pop/sub Lab 首頁" style="color:var(--theme-foreground);text-decoration:none;font-size:0.85rem;opacity:0.7;">↩ pop/sub Lab 首頁</a>
