@@ -1,99 +1,438 @@
 /* ================================================================
-   pop/sub Lab — Design Token System
+   pop/sub Lab — 編輯式圖表設計系統（Editorial Chart Design System）
    ================================================================
-   設計師未來只需修改此檔的 CSS 變數即可更換全站色彩與字體。
-   所有頁面的圖表、文字、元件均引用這些 Token。
+   本站唯一樣式來源。Observable Framework 以 observablehq.config.js
+   的 `style: "styles.css"` 載入本檔，取代內建 theme 陣列。
+
+   視覺風格參考 lieflat-charts（PolyForm Noncommercial 1.0.0）之設計
+   語言，色票已自行微調，未使用其任何程式碼。
+
+   設計原則：
+     1. 明度即資料 — 最重要者最深（暗底時最亮）
+     2. 全站僅鎖一套彩色（porcelain 青瓷藍系），mono 灰階 ladder 為底
+     3. 不透明、不漸層、不發光、不陰影
+     4. 卡片固定四件套：結論式標題 → 副標 → 圖本體 → 全大寫來源行
    ================================================================ */
 
-/* ── Google Fonts ── */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap");
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+@import url("observablehq:theme-near-midnight.css") (prefers-color-scheme: dark);
 
-/* ── 色彩 Token（Light Mode）── */
+/* ================================================================
+   一、Design Token
+   ================================================================ */
+
 :root {
-  /* 資料視覺化 — 語義色彩 */
-  --ps-color-budget:      #2563eb;  /* 預算/補助 — 藍 */
-  --ps-color-settlement:  #dc2626;  /* 決算/採購 — 紅 */
-  --ps-color-analysis:    #6366f1;  /* 分析/分佈 — 靛 */
-  --ps-color-accent:      #059669;  /* 強調/輔助 — 綠 */
+  /* ── 字族 ── */
+  --ps-font-sans: Inter, "Noto Sans TC", system-ui, -apple-system, sans-serif;
+  --ps-font-serif: "Noto Serif TC", Georgia, serif;
+  --ps-font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  /* 文字 */
-  --ps-text-muted: var(--theme-foreground-muted, #666);
+  /* ── 字級層級 ── */
+  --ps-size-figure-title: 19px;   /* 獨立大圖標題 */
+  --ps-size-card-title: 16.5px;   /* 卡內標題 */
+  --ps-size-sub: 11.5px;          /* 副標題（圖例＋時間範圍）*/
+  --ps-size-src: 9.5px;           /* 來源行（全大寫）*/
+  --ps-size-axis: 9.5px;          /* 軸標籤 */
 
-  /* 字體堆疊 */
-  --ps-font-sans:  "Noto Sans TC", var(--sans-serif);
-  --ps-font-serif: "Noto Serif TC", var(--serif);
+  /* ── mono：兩極 ── */
+  --ps-ink: #1b1b19;
+  --ps-paper: #f1f0ec;
+  --ps-muted: #8d8c86;
+  --ps-faint: #c4c3bd;
+  --ps-grid: #dfded7;
+
+  /* ── mono：7 階灰 ladder（重要性由深到淺）── */
+  --ps-l1: #1b1b19;
+  --ps-l2: #494843;
+  --ps-l3: #696862;
+  --ps-l4: #8d8c86;
+  --ps-l5: #afaea8;
+  --ps-l6: #c4c3bd;
+  --ps-l7: #d9d8d2;
+
+  /* ── porcelain 青瓷藍（單色相明度階，供有序資料）── */
+  --ps-data: #2f4c9e;
+  --ps-hero: #0b2560;
+  --ps-ramp-1: #d6e6f7;
+  --ps-ramp-2: #a9c6ea;
+  --ps-ramp-3: #7ba3da;
+  --ps-ramp-4: #4e7fc6;
+  --ps-ramp-5: #2f4c9e;
+  --ps-ramp-6: #1a356f;
+  --ps-ramp-7: #0b2560;
+
+  /* ── 版面 ── */
+  --ps-card-radius: 24px;
+  --ps-card-gap: 22px;
+  --ps-card-pad: 28px 28px 20px;
+
+  /* ── 相容別名（既有頁面／舊程式碼引用）── */
+  --ps-color-budget: var(--ps-data);
+  --ps-color-settlement: var(--ps-l2);
+  --ps-color-analysis: var(--ps-ramp-3);
+  --ps-color-accent: var(--ps-hero);
+  --ps-text-muted: var(--ps-muted);
 }
 
-/* ── 色彩 Token（Dark Mode）── */
+/* ── 暗底：墨與紙互換，資料色必須亮於卡底 ── */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --ps-color-budget:     #60a5fa;
-    --ps-color-settlement: #f87171;
-    --ps-color-analysis:   #a5b4fc;
-    --ps-color-accent:     #34d399;
-    --ps-text-muted:       var(--theme-foreground-muted, #999);
+  :root:not([data-theme="light"]) {
+    --ps-ink: #ecebe5;
+    --ps-paper: #1b1b19;
+    --ps-muted: #8d8c86;
+    --ps-faint: #55544f;
+    --ps-grid: #2f2e2a;
+
+    --ps-l1: #ecebe5;
+    --ps-l2: #c9c8c2;
+    --ps-l3: #aaa9a3;
+    --ps-l4: #8d8c86;
+    --ps-l5: #6e6d67;
+    --ps-l6: #55544f;
+    --ps-l7: #3d3c38;
+
+    --ps-data: #7ba3da;
+    --ps-hero: #c9def4;
+    --ps-ramp-1: #1a356f;
+    --ps-ramp-2: #2f4c9e;
+    --ps-ramp-3: #4e7fc6;
+    --ps-ramp-4: #7ba3da;
+    --ps-ramp-5: #a9c6ea;
+    --ps-ramp-6: #c9def4;
+    --ps-ramp-7: #e4effa;
   }
 }
 
-/* ── 全域字體 ── */
+/* ── 手動切換（header 按鈕寫入 data-theme）── */
+:root[data-theme="dark"] {
+  --theme-foreground: #ecebe5;
+  --theme-background-b: #141412;
+  --theme-background-a: #1b1b19;
+  --theme-background: var(--theme-background-a);
+  --theme-background-alt: var(--theme-background-b);
+  --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-b));
+  --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-b));
+  --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-b));
+  --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-b));
+  --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-b));
+
+  --ps-ink: #ecebe5;
+  --ps-paper: #1b1b19;
+  --ps-muted: #8d8c86;
+  --ps-faint: #55544f;
+  --ps-grid: #2f2e2a;
+
+  --ps-l1: #ecebe5;
+  --ps-l2: #c9c8c2;
+  --ps-l3: #aaa9a3;
+  --ps-l4: #8d8c86;
+  --ps-l5: #6e6d67;
+  --ps-l6: #55544f;
+  --ps-l7: #3d3c38;
+
+  --ps-data: #7ba3da;
+  --ps-hero: #c9def4;
+  --ps-ramp-1: #1a356f;
+  --ps-ramp-2: #2f4c9e;
+  --ps-ramp-3: #4e7fc6;
+  --ps-ramp-4: #7ba3da;
+  --ps-ramp-5: #a9c6ea;
+  --ps-ramp-6: #c9def4;
+  --ps-ramp-7: #e4effa;
+
+  color-scheme: dark;
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+}
+
+:root[data-theme="light"] {
+  --theme-foreground: #1b1b19;
+  --theme-background-a: #ffffff;
+  --theme-background-b: #f1f0ec;
+  --theme-background: var(--theme-background-a);
+  --theme-background-alt: var(--theme-background-b);
+  --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-a));
+  --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-a));
+  --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-a));
+  --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-a));
+  --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-a));
+  color-scheme: light;
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+}
+
+/* ================================================================
+   二、字體層級
+   ================================================================ */
+
+body,
+#observablehq-main,
+#observablehq-sidebar,
+#observablehq-footer,
+table,
+label,
+select,
+input[type="text"],
+input[type="search"] {
+  font-family: var(--ps-font-sans);
+  font-feature-settings: "tnum" 1, "cv05" 1;
+}
+
 body,
 #observablehq-main {
-  font-family: var(--ps-font-sans);
   font-weight: 400;
 }
 
-/* ── 標題：襯線體 ── */
-h1 {
+#observablehq-main h1 {
   font-family: var(--ps-font-serif);
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-h2 {
-  font-family: var(--ps-font-serif);
-  font-weight: 600;
+#observablehq-main h2 {
+  font-family: var(--ps-font-sans);
+  font-size: var(--ps-size-figure-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
 }
 
-/* ── h3 以下：無襯線粗體 ── */
-h3, h4, h5, h6 {
+#observablehq-main h3,
+#observablehq-main h4,
+#observablehq-main h5,
+#observablehq-main h6 {
   font-family: var(--ps-font-sans);
   font-weight: 600;
 }
 
-/* ── 數字卡片 ── */
-.big {
-  font-family: var(--ps-font-sans);
-  font-size: 2rem;
-  font-weight: 700;
-  display: block;
-}
-
-.muted {
-  color: var(--ps-text-muted);
-  font-size: 0.85rem;
-}
-
-/* ── 側邊欄 & 頁尾 ── */
 #observablehq-sidebar {
-  font-family: var(--ps-font-sans);
   font-weight: 500;
 }
 
 #observablehq-footer {
-  font-family: var(--ps-font-sans);
-  font-weight: 300;
-  font-size: 0.8rem;
-}
-
-/* ── 表格 ── */
-table {
-  font-family: var(--ps-font-sans);
   font-weight: 400;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
-/* ── 篩選器 label ── */
-label,
-select,
-input[type="text"] {
+#observablehq-footer nav {
+  max-width: 100%;
+}
+
+/* 數值：一律最粗 */
+.big,
+.ps-kpi-value {
   font-family: var(--ps-font-sans);
+  font-size: 2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  display: block;
+  color: var(--ps-ink);
+}
+
+.muted,
+.ps-sub {
+  color: var(--ps-muted);
+  font-size: var(--ps-size-sub);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ================================================================
+   三、卡片四件套
+   ================================================================ */
+
+/* 純靠留白分卡：無邊框、無陰影、24px 圓角 */
+#observablehq-main .card,
+.ps-card {
+  background: var(--theme-background-alt);
+  border: none;
+  box-shadow: none;
+  border-radius: var(--ps-card-radius);
+  padding: var(--ps-card-pad);
+  margin: 0;
+}
+
+#observablehq-main .grid {
+  gap: var(--ps-card-gap);
+}
+
+/* ① 結論式標題 */
+.ps-card > .ps-title,
+#observablehq-main .card > h2 {
+  font-family: var(--ps-font-sans);
+  font-size: var(--ps-size-card-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin: 0 0 3px;
+  color: var(--ps-ink);
+}
+
+/* ② 副標題：圖例＋時間範圍，間距僅 3px */
+.ps-card > .ps-sub {
+  margin: 0 0 14px;
+}
+
+/* ③ 圖本體 */
+.ps-card > .ps-figure {
+  margin: 0;
+  overflow-x: auto;
+}
+
+/* ④ 來源行：全大寫、加字距 */
+.ps-card > .ps-src,
+.ps-src {
+  margin: 12px 0 0;
+  font-size: var(--ps-size-src);
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ps-faint);
+}
+
+/* KPI 卡：標籤在上、數值在下 */
+.ps-kpi-label {
+  font-size: var(--ps-size-sub);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ps-muted);
+  margin: 0 0 6px;
+}
+
+.ps-kpi-note {
+  font-size: var(--ps-size-sub);
+  color: var(--ps-muted);
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+/* 圖例：實心方塊，不用漸層 */
+.ps-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  font-size: var(--ps-size-sub);
+  color: var(--ps-muted);
+}
+
+.ps-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ps-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.ps-swatch.is-dash {
+  width: 16px;
+  height: 0;
+  border-radius: 0;
+  border-top: 2px dashed currentColor;
+}
+
+/* ================================================================
+   四、圖表細節
+   ================================================================ */
+
+/* 膠囊圓角：橫柱圓外端；Plot 以 rx 產生近似全圓 */
+figure svg [aria-label="bar"] rect,
+figure svg [aria-label="rect"] rect {
+  shape-rendering: crispEdges;
+}
+
+/* 軸線與刻度：無實邊框，字重 600、MUTED 灰 */
+figure svg [aria-label$="axis tick label"] text,
+figure svg [aria-label$="axis label"] text {
+  font-weight: 600;
+  fill: var(--ps-muted);
+}
+
+/* 篩選器 */
+form.ps-controls,
+#observablehq-main form {
+  font-size: var(--ps-size-sub);
+}
+
+#observablehq-main label {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* 表格：等寬數字、細發絲分隔線 */
+#observablehq-main table {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#observablehq-main table th {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ps-muted);
+  border-bottom: 1px solid var(--ps-grid);
+}
+
+/* ================================================================
+   五、Header 與側邊欄控制項
+   ================================================================ */
+
+.ps-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.ps-theme-toggle {
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--ps-grid);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: var(--ps-size-sub);
+  font-weight: 500;
+  color: var(--theme-foreground);
+  font-family: var(--ps-font-sans);
+}
+
+.ps-theme-toggle:hover {
+  border-color: var(--ps-muted);
+}
+
+label[for="observablehq-sidebar-toggle"] {
+  z-index: 100;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--theme-background-alt);
+  border: 1px solid var(--ps-grid);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+label[for="observablehq-sidebar-toggle"]:hover {
+  background: var(--theme-foreground-faintest);
+  border-color: var(--ps-muted);
+}
+
+/* ================================================================
+   六、動態降級
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
